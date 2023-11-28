@@ -5,8 +5,8 @@
 makefile_name := $(abspath $(lastword $(MAKEFILE_LIST)))
 makefile_path := $(strip $(patsubst %/,% , $(dir $(makefile_name))))
 
-# CC ?= gcc
-CROSS := arm-none-linux-gnueabihf-
+#CC ?= gcc
+#CROSS := arm-none-linux-gnueabihf-
 CC := $(CROSS)gcc
 SZ := $(CROSS)size
 PRJ_DIR := $(makefile_path)
