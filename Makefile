@@ -36,7 +36,7 @@ LDFLAGS += -LSDL2/lib
 -include $(PRJ_DIR)/gui_guider/custom/custom.mk
 
 #Collect the files to compile
-CSRCS += main.c
+CSRCS += main.c mouse_cursor_icon.c
 DEPPATH += --dep-path $(makefile_path)/
 VPATH += :$(makefile_path)/
 CFLAGS += "-I$(makefile_path)/"

@@ -28,7 +28,7 @@ int main(void)
     hal_init();
 
     /*Create a GUI-Guider app */
-	setup_ui(&guider_ui);
+    setup_ui(&guider_ui);
     events_init(&guider_ui);
     custom_init(&guider_ui);
 
@@ -88,14 +88,22 @@ static int tick_thread(void * data)
 
 static void input_device(void)
 {
-    // Event device - for touch screen
+    // Event device - for mouse
     evdev_init();
-    lv_indev_drv_t indev_drv;
-    lv_indev_drv_init(&indev_drv);
+    static lv_indev_drv_t indev_drv;
+    lv_indev_drv_init(&indev_drv); /*Basic initialization*/
     indev_drv.type = LV_INDEV_TYPE_POINTER;
+
+    /*This function will be called periodically (by the library) to get the mouse position and state*/
     indev_drv.read_cb = evdev_read;
-    /*Add a display the LittlevGL sing the frame buffer driver*/
-    lv_indev_drv_register(&indev_drv);
+    lv_indev_t *mouse_indev = lv_indev_drv_register(&indev_drv);
+
+
+    /*Set a cursor for the mouse*/
+    LV_IMG_DECLARE(mouse_cursor_icon)
+    lv_obj_t * cursor_obj = lv_img_create(lv_scr_act(), NULL); /*Create an image object for the cursor */
+    lv_img_set_src(cursor_obj, &mouse_cursor_icon);           /*Set the image source*/
+    lv_indev_set_cursor(mouse_indev, cursor_obj);             /*Connect the image  object to the driver*/
 }
 
 /*Set in lv_conf.h as `LV_TICK_CUSTOM_SYS_TIME_EXPR`*/
