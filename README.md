@@ -1,4 +1,4 @@
-# LVGL application for Raspberry Pi 3
+# LVGL application for Raspberry Pi CM4 (RAspbian 64bit)
 
 "Demo printer" LVGL application for Raspbery Pi CM4 using SDL library.
 This project was made from `lvgl-port-linux-frame-buffer`
